@@ -4,12 +4,12 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
-      body { margin: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+      body { margin: 0; overflow: hidden; font-family: sans-serif; }
       .main-buttons { position: fixed; top: 20px; width: 100%; text-align: center; z-index: 1000; }
       .nav-container { position: fixed; bottom: 40px; width: 100%; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
-      .nav-btn { background: rgba(255, 204, 0, 0.9); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-      .category-btn { background: rgba(0,0,0,0.8); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px 15px; border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: bold; }
-      #item-name { background: rgba(0,0,0,0.8); color: white; padding: 10px 25px; border-radius: 25px; font-size: 20px; border: 2px solid #ffcc00; min-width: 160px; text-align: center; font-weight: bold; }
+      .nav-btn { background: #ffcc00; color: black; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; font-weight: bold; cursor: pointer; }
+      .category-btn { background: rgba(0,0,0,0.8); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px; border-radius: 10px; margin: 0 3px; cursor: pointer; font-size: 12px; }
+      #item-name { background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 25px; font-size: 18px; border: 2px solid #ffcc00; min-width: 150px; text-align: center; }
     </style>
   </head>
   <body>
@@ -21,55 +21,72 @@
 
     <div class="nav-container">
       <button class="nav-btn" onclick="prevItem()"> < </button>
-      <div id="item-name">Hamburger</div>
+      <div id="item-name">Yükleniyor...</div>
       <button class="nav-btn" onclick="nextItem()"> > </button>
     </div>
 
-    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" 
-             vr-mode-ui="enabled: false" 
-             device-orientation-permission-ui="enabled: false" 
-             color-space="sRGB" 
-             renderer="colorManagement: true, physicallyCorrectLights: true">
+    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true">
       
       <a-assets>
-        <a-asset-item id="res-hamb" src="./hamburger.glb"></a-asset-item>
-        <a-asset-item id="res-pizz" src="./pizza.glb"></a-asset-item>
-        <a-asset-item id="res-pide" src="./pide_turkish_pizzakusbaskasar.glb"></a-asset-item>
-        <a-asset-item id="res-kofte" src="./mustafa-_cig_kofte.glb"></a-asset-item>
-        <a-asset-item id="res-cola" src="./coca_cola_bottle_glass.glb"></a-asset-item>
-        <a-asset-item id="res-ayran" src="./ayran_turkish_drink_game_asset.glb"></a-asset-item>
-        <a-asset-item id="res-soda" src="./soda_can_kutu.glb"></a-asset-item>
-        <a-asset-item id="res-baklava" src="./baklava_ince_tabak.glb"></a-asset-item>
-        <a-asset-item id="res-dondurma" src="./ice_cream.glb"></a-asset-item>
+        <a-asset-item id="m-hamb" src="./hamburger.glb"></a-asset-item>
+        <a-asset-item id="m-pizz" src="./pizza.glb"></a-asset-item>
+        <a-asset-item id="m-adana" src="./mustafa-adana.glb"></a-asset-item>
+        <a-asset-item id="m-cigk" src="./mustafa-_cig_kofte.glb"></a-asset-item>
+        <a-asset-item id="m-pide" src="./pide_turkish_pizzakusbaskasar.glb"></a-asset-item>
+        <a-asset-item id="m-patat" src="./french_fries_tray.glb"></a-asset-item>
+        <a-asset-item id="m-maka" src="./makarna.glb"></a-asset-item>
+        <a-asset-item id="m-tost" src="./toasts_with_cheese.glb"></a-asset-item>
+        <a-asset-item id="m-cola" src="./coca_cola_bottle_glass.glb"></a-asset-item>
+        <a-asset-item id="m-ayran" src="./ayran_turkish_drink_game_asset.glb"></a-asset-item>
+        <a-asset-item id="m-soda" src="./soda_can_kutu.glb"></a-asset-item>
+        <a-asset-item id="m-su" src="./water_bottle.glb"></a-asset-item>
+        <a-asset-item id="m-cay" src="./red_glass_of_tea.glb"></a-asset-item>
+        <a-asset-item id="m-kahve" src="./turkish_coffee.glb"></a-asset-item>
+        <a-asset-item id="m-icec" src="./ice_coffee.glb"></a-asset-item>
+        <a-asset-item id="m-capp" src="./cup_of_cappuccino.glb"></a-asset-item>
+        <a-asset-item id="m-bakl" src="./baklava_ince_tabak.glb"></a-asset-item>
+        <a-asset-item id="m-dond" src="./ice_cream.glb"></a-asset-item>
+        <a-asset-item id="m-kurab" src="./milk_and_cookies_for_santa.glb"></a-asset-item>
+        <a-asset-item id="m-dess" src="./dessert_for_breakfast.glb"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       
-      <a-light type="ambient" intensity="1.5"></a-light>
-      <a-light type="directional" position="1 2 1" intensity="1.2"></a-light>
-      <a-light type="point" position="-2 2 2" intensity="0.8"></a-light>
+      <a-light type="ambient" intensity="2"></a-light>
+      <a-light type="directional" position="0 5 0" intensity="1.5"></a-light>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model id="ar-model" src="#res-hamb" position="0 0 0" scale="0.04 0.04 0.04" rotation="0 0 0"></a-gltf-model>
+        <a-gltf-model id="ar-model" src="#m-hamb" position="0 0 0" scale="0.04 0.04 0.04" rotation="0 0 0"></a-gltf-model>
       </a-entity>
     </a-scene>
 
     <script>
       const categories = {
         yemek: [
-          { name: "Hamburger", model: "#res-hamb", scale: "0.04 0.04 0.04" },
-          { name: "Pizza", model: "#res-pizz", scale: "0.2 0.2 0.2" },
-          { name: "Pide", model: "#res-pide", scale: "0.15 0.15 0.15" },
-          { name: "Çiğ Köfte", model: "#res-kofte", scale: "0.12 0.12 0.12" }
+          { name: "Hamburger", model: "#m-hamb", sc: "0.04" },
+          { name: "Pizza", model: "#m-pizz", sc: "0.2" },
+          { name: "Adana Kebap", model: "#m-adana", sc: "0.15" },
+          { name: "Çiğ Köfte", model: "#m-cigk", sc: "0.12" },
+          { name: "Pide", model: "#m-pide", sc: "0.15" },
+          { name: "Patates", model: "#m-patat", sc: "0.15" },
+          { name: "Makarna", model: "#m-maka", sc: "0.15" },
+          { name: "Tost", model: "#m-tost", sc: "0.15" }
         ],
         icecek: [
-          { name: "Coca Cola", model: "#res-cola", scale: "0.4 0.4 0.4" },
-          { name: "Ayran", model: "#res-ayran", scale: "0.3 0.3 0.3" },
-          { name: "Soda", model: "#res-soda", scale: "0.25 0.25 0.25" }
+          { name: "Kola", model: "#m-cola", sc: "0.4" },
+          { name: "Ayran", model: "#m-ayran", sc: "0.3" },
+          { name: "Soda", model: "#m-soda", sc: "0.2" },
+          { name: "Su", model: "#m-su", sc: "0.2" },
+          { name: "Çay", model: "#m-cay", sc: "0.15" },
+          { name: "Kahve", model: "#m-kahve", sc: "0.08" },
+          { name: "Ice Coffee", model: "#m-icec", sc: "0.15" },
+          { name: "Cappuccino", model: "#m-capp", sc: "0.15" }
         ],
         tatli: [
-          { name: "Baklava", model: "#res-baklava", scale: "0.8 0.8 0.8" },
-          { name: "Dondurma", model: "#res-dondurma", scale: "0.3 0.3 0.3" }
+          { name: "Baklava", model: "#m-bakl", sc: "0.8" },
+          { name: "Dondurma", model: "#m-dond", sc: "0.3" },
+          { name: "Kurabiye", model: "#m-kurab", sc: "0.1" },
+          { name: "Kahvaltı Tatlısı", model: "#m-dess", sc: "0.15" }
         ]
       };
 
@@ -81,14 +98,9 @@
         const modelEl = document.getElementById('ar-model');
         const nameEl = document.getElementById('item-name');
         
-        // Modeli değiştirmeden önce görünürlüğü sıfırlayıp tekrar açmak bazen hatayı çözer
-        modelEl.setAttribute('visible', false);
-        setTimeout(() => {
-          modelEl.setAttribute('src', item.model);
-          modelEl.setAttribute('scale', item.scale);
-          nameEl.innerText = item.name;
-          modelEl.setAttribute('visible', true);
-        }, 10);
+        nameEl.innerText = item.name;
+        modelEl.setAttribute('src', item.model);
+        modelEl.setAttribute('scale', `${item.sc} ${item.sc} ${item.sc}`);
       }
 
       function nextItem() {
@@ -106,6 +118,9 @@
         currentIndex = 0;
         updateModel();
       }
+      
+      // İlk yükleme
+      window.onload = () => { updateModel(); };
     </script>
   </body>
 </html>
