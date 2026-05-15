@@ -4,12 +4,12 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
-      body { margin: 0; overflow: hidden; font-family: sans-serif; }
+      body { margin: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
       .main-buttons { position: fixed; top: 20px; width: 100%; text-align: center; z-index: 1000; }
       .nav-container { position: fixed; bottom: 40px; width: 100%; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
-      .nav-btn { background: rgba(0,0,0,0.8); color: #ffcc00; border: 2px solid #ffcc00; padding: 15px; border-radius: 50%; font-size: 20px; font-weight: bold; cursor: pointer; }
-      .category-btn { background: rgba(0,0,0,0.7); color: white; border: 1px solid white; padding: 10px 15px; border-radius: 10px; margin: 0 5px; cursor: pointer; }
-      #item-name { background: rgba(0,0,0,0.8); color: white; padding: 8px 20px; border-radius: 20px; font-size: 18px; border: 1px solid #ffcc00; min-width: 150px; text-align: center; }
+      .nav-btn { background: rgba(255, 204, 0, 0.9); color: black; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+      .category-btn { background: rgba(0,0,0,0.8); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px 15px; border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: bold; }
+      #item-name { background: rgba(0,0,0,0.8); color: white; padding: 10px 25px; border-radius: 25px; font-size: 20px; border: 2px solid #ffcc00; min-width: 160px; text-align: center; font-weight: bold; }
     </style>
   </head>
   <body>
@@ -25,41 +25,51 @@
       <button class="nav-btn" onclick="nextItem()"> > </button>
     </div>
 
-    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true">
+    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" 
+             vr-mode-ui="enabled: false" 
+             device-orientation-permission-ui="enabled: false" 
+             color-space="sRGB" 
+             renderer="colorManagement: true, physicallyCorrectLights: true">
       
-      <a-assets id="asset-list">
-        <a-asset-item id="m-hamb" src="./hamburger.glb"></a-asset-item>
-        <a-asset-item id="m-pizz" src="./pizza.glb"></a-asset-item>
-        <a-asset-item id="m-adana" src="./mustafa-adana.glb"></a-asset-item>
-        <a-asset-item id="m-kofte" src="./mustafa-_cig_kofte.glb"></a-asset-item>
-        <a-asset-item id="m-kola" src="./coca_cola_bottle_glass.glb"></a-asset-item>
-        <a-asset-item id="m-ayran" src="./ayran_turkish_drink_game_asset.glb"></a-asset-item>
-        <a-asset-item id="m-baklava" src="./baklava_ince_tabak.glb"></a-asset-item>
+      <a-assets>
+        <a-asset-item id="res-hamb" src="./hamburger.glb"></a-asset-item>
+        <a-asset-item id="res-pizz" src="./pizza.glb"></a-asset-item>
+        <a-asset-item id="res-pide" src="./pide_turkish_pizzakusbaskasar.glb"></a-asset-item>
+        <a-asset-item id="res-kofte" src="./mustafa-_cig_kofte.glb"></a-asset-item>
+        <a-asset-item id="res-cola" src="./coca_cola_bottle_glass.glb"></a-asset-item>
+        <a-asset-item id="res-ayran" src="./ayran_turkish_drink_game_asset.glb"></a-asset-item>
+        <a-asset-item id="res-soda" src="./soda_can_kutu.glb"></a-asset-item>
+        <a-asset-item id="res-baklava" src="./baklava_ince_tabak.glb"></a-asset-item>
+        <a-asset-item id="res-dondurma" src="./ice_cream.glb"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-light type="ambient" intensity="1.2"></a-light>
-      <a-light type="point" position="5 5 5" intensity="1"></a-light>
+      
+      <a-light type="ambient" intensity="1.5"></a-light>
+      <a-light type="directional" position="1 2 1" intensity="1.2"></a-light>
+      <a-light type="point" position="-2 2 2" intensity="0.8"></a-light>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model id="ar-model" src="#m-hamb" position="0 0 0" scale="0.05 0.05 0.05" rotation="0 0 0"></a-gltf-model>
+        <a-gltf-model id="ar-model" src="#res-hamb" position="0 0 0" scale="0.04 0.04 0.04" rotation="0 0 0"></a-gltf-model>
       </a-entity>
     </a-scene>
 
     <script>
       const categories = {
         yemek: [
-          { name: "Hamburger", model: "#m-hamb", scale: "0.04 0.04 0.04" },
-          { name: "Pizza", model: "#m-pizz", scale: "0.25 0.25 0.25" },
-          { name: "Adana Kebap", model: "#m-adana", scale: "0.15 0.15 0.15" },
-          { name: "Çiğ Köfte", model: "#m-kofte", scale: "0.15 0.15 0.15" }
+          { name: "Hamburger", model: "#res-hamb", scale: "0.04 0.04 0.04" },
+          { name: "Pizza", model: "#res-pizz", scale: "0.2 0.2 0.2" },
+          { name: "Pide", model: "#res-pide", scale: "0.15 0.15 0.15" },
+          { name: "Çiğ Köfte", model: "#res-kofte", scale: "0.12 0.12 0.12" }
         ],
         icecek: [
-          { name: "Coca Cola", model: "#m-kola", scale: "0.4 0.4 0.4" },
-          { name: "Ayran", model: "#m-ayran", scale: "0.3 0.3 0.3" }
+          { name: "Coca Cola", model: "#res-cola", scale: "0.4 0.4 0.4" },
+          { name: "Ayran", model: "#res-ayran", scale: "0.3 0.3 0.3" },
+          { name: "Soda", model: "#res-soda", scale: "0.25 0.25 0.25" }
         ],
         tatli: [
-          { name: "Baklava", model: "#m-baklava", scale: "0.7 0.7 0.7" }
+          { name: "Baklava", model: "#res-baklava", scale: "0.8 0.8 0.8" },
+          { name: "Dondurma", model: "#res-dondurma", scale: "0.3 0.3 0.3" }
         ]
       };
 
@@ -71,9 +81,14 @@
         const modelEl = document.getElementById('ar-model');
         const nameEl = document.getElementById('item-name');
         
-        modelEl.setAttribute('src', item.model);
-        modelEl.setAttribute('scale', item.scale);
-        nameEl.innerText = item.name;
+        // Modeli değiştirmeden önce görünürlüğü sıfırlayıp tekrar açmak bazen hatayı çözer
+        modelEl.setAttribute('visible', false);
+        setTimeout(() => {
+          modelEl.setAttribute('src', item.model);
+          modelEl.setAttribute('scale', item.scale);
+          nameEl.innerText = item.name;
+          modelEl.setAttribute('visible', true);
+        }, 10);
       }
 
       function nextItem() {
