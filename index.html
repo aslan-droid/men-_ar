@@ -5,11 +5,11 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
       body { margin: 0; overflow: hidden; font-family: sans-serif; }
-      .main-buttons { position: fixed; top: 20px; width: 100%; text-align: center; z-index: 1000; }
-      .nav-container { position: fixed; bottom: 40px; width: 100%; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
-      .nav-btn { background: #ffcc00; color: black; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; font-weight: bold; cursor: pointer; }
-      .category-btn { background: rgba(0,0,0,0.8); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px; border-radius: 10px; margin: 0 3px; cursor: pointer; font-size: 12px; }
-      #item-name { background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 25px; font-size: 18px; border: 2px solid #ffcc00; min-width: 150px; text-align: center; }
+      .main-buttons { position: fixed; top: 15px; width: 100%; text-align: center; z-index: 1000; }
+      .nav-container { position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 15px; z-index: 1000; }
+      .nav-btn { background: #ffcc00; color: black; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 28px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
+      .category-btn { background: rgba(0,0,0,0.85); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px 12px; border-radius: 12px; margin: 0 3px; cursor: pointer; font-size: 12px; font-weight: bold; }
+      #item-name { background: rgba(0,0,0,0.95); color: white; padding: 12px 25px; border-radius: 30px; font-size: 19px; border: 2px solid #ffcc00; min-width: 170px; text-align: center; font-weight: bold; }
     </style>
   </head>
   <body>
@@ -25,102 +25,95 @@
       <button class="nav-btn" onclick="nextItem()"> > </button>
     </div>
 
-    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true">
+    <a-scene mindar-image="imageTargetSrc: ./menü.mind; uiScanning: no;" 
+             vr-mode-ui="enabled: false" 
+             device-orientation-permission-ui="enabled: false" 
+             color-space="sRGB" 
+             renderer="colorManagement: true, physicallyCorrectLights: true">
       
-      <a-assets>
-        <a-asset-item id="m-hamb" src="./hamburger.glb"></a-asset-item>
-        <a-asset-item id="m-pizz" src="./pizza.glb"></a-asset-item>
-        <a-asset-item id="m-adana" src="./mustafa-adana.glb"></a-asset-item>
-        <a-asset-item id="m-cigk" src="./mustafa-_cig_kofte.glb"></a-asset-item>
-        <a-asset-item id="m-pide" src="./pide_turkish_pizzakusbaskasar.glb"></a-asset-item>
-        <a-asset-item id="m-patat" src="./french_fries_tray.glb"></a-asset-item>
-        <a-asset-item id="m-maka" src="./makarna.glb"></a-asset-item>
-        <a-asset-item id="m-tost" src="./toasts_with_cheese.glb"></a-asset-item>
-        <a-asset-item id="m-cola" src="./coca_cola_bottle_glass.glb"></a-asset-item>
-        <a-asset-item id="m-ayran" src="./ayran_turkish_drink_game_asset.glb"></a-asset-item>
-        <a-asset-item id="m-soda" src="./soda_can_kutu.glb"></a-asset-item>
-        <a-asset-item id="m-su" src="./water_bottle.glb"></a-asset-item>
-        <a-asset-item id="m-cay" src="./red_glass_of_tea.glb"></a-asset-item>
-        <a-asset-item id="m-kahve" src="./turkish_coffee.glb"></a-asset-item>
-        <a-asset-item id="m-icec" src="./ice_coffee.glb"></a-asset-item>
-        <a-asset-item id="m-capp" src="./cup_of_cappuccino.glb"></a-asset-item>
-        <a-asset-item id="m-bakl" src="./baklava_ince_tabak.glb"></a-asset-item>
-        <a-asset-item id="m-dond" src="./ice_cream.glb"></a-asset-item>
-        <a-asset-item id="m-kurab" src="./milk_and_cookies_for_santa.glb"></a-asset-item>
-        <a-asset-item id="m-dess" src="./dessert_for_breakfast.glb"></a-asset-item>
-      </a-assets>
-
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       
-      <a-light type="ambient" intensity="2"></a-light>
-      <a-light type="directional" position="0 5 0" intensity="1.5"></a-light>
+      <a-light type="ambient" intensity="1.8"></a-light>
+      <a-light type="directional" position="1 3 1" intensity="1.5"></a-light>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model id="ar-model" src="#m-hamb" position="0 0 0" scale="0.04 0.04 0.04" rotation="0 0 0"></a-gltf-model>
+        <a-gltf-model id="ar-model" position="0 0 0" rotation="0 0 0"></a-gltf-model>
       </a-entity>
     </a-scene>
 
     <script>
       const categories = {
         yemek: [
-          { name: "Hamburger", model: "#m-hamb", sc: "0.04" },
-          { name: "Pizza", model: "#m-pizz", sc: "0.2" },
-          { name: "Adana Kebap", model: "#m-adana", sc: "0.15" },
-          { name: "Çiğ Köfte", model: "#m-cigk", sc: "0.12" },
-          { name: "Pide", model: "#m-pide", sc: "0.15" },
-          { name: "Patates", model: "#m-patat", sc: "0.15" },
-          { name: "Makarna", model: "#m-maka", sc: "0.15" },
-          { name: "Tost", model: "#m-tost", sc: "0.15" }
+          { name: "Hamburger", file: "hamburger.glb", sc: 0.04 },
+          { name: "Pizza", file: "pizza.glb", sc: 0.2 },
+          { name: "Adana Kebap", file: "mustafa-_adana.glb", sc: 0.18 },
+          { name: "Çiğ Köfte", file: "mustafa_-_cig_kofte.glb", sc: 0.15 },
+          { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.15 },
+          { name: "Makarna", file: "makarna.glb", sc: 0.15 },
+          { name: "Patates Kızartması", file: "french_fries_tray.glb", sc: 0.15 },
+          { name: "Tost", file: "toasts_with_cheese.glb", sc: 0.15 }
         ],
         icecek: [
-          { name: "Kola", model: "#m-cola", sc: "0.4" },
-          { name: "Ayran", model: "#m-ayran", sc: "0.3" },
-          { name: "Soda", model: "#m-soda", sc: "0.2" },
-          { name: "Su", model: "#m-su", sc: "0.2" },
-          { name: "Çay", model: "#m-cay", sc: "0.15" },
-          { name: "Kahve", model: "#m-kahve", sc: "0.08" },
-          { name: "Ice Coffee", model: "#m-icec", sc: "0.15" },
-          { name: "Cappuccino", model: "#m-capp", sc: "0.15" }
+          { name: "Coca Cola", file: "coca_cola_bottle_glass.glb", sc: 0.4 },
+          { name: "Ayran", file: "ayran_turkish_drink_game_asset.glb", sc: 0.3 },
+          { name: "Su", file: "water_bottle.glb", sc: 0.22 },
+          { name: "Soda", file: "soda_can_kutu.glb", sc: 0.22 },
+          { name: "Çay", file: "red_glass_of_tea.glb", sc: 0.18 },
+          { name: "Türk Kahvesi", file: "turkish_coffee.glb", sc: 0.08 },
+          { name: "Ice Coffee", file: "ice_coffee.glb", sc: 0.18 },
+          { name: "Cappuccino", file: "cup_of_cappuccino.glb", sc: 0.18 }
         ],
         tatli: [
-          { name: "Baklava", model: "#m-bakl", sc: "0.8" },
-          { name: "Dondurma", model: "#m-dond", sc: "0.3" },
-          { name: "Kurabiye", model: "#m-kurab", sc: "0.1" },
-          { name: "Kahvaltı Tatlısı", model: "#m-dess", sc: "0.15" }
+          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 0.8 },
+          { name: "Dondurma", file: "ice_cream.glb", sc: 0.35 },
+          { name: "Kurabiye", file: "milk_and_cookies_for_santa.glb", sc: 0.12 },
+          { name: "Kahvaltı Tatlısı", file: "dessert_for_breakfast.glb", sc: 0.18 }
         ]
       };
 
-      let currentCategory = 'yemek';
-      let currentIndex = 0;
+      let currentCat = 'yemek';
+      let currentIdx = 0;
 
       function updateModel() {
-        const item = categories[currentCategory][currentIndex];
+        const item = categories[currentCat][currentIdx];
         const modelEl = document.getElementById('ar-model');
         const nameEl = document.getElementById('item-name');
         
-        nameEl.innerText = item.name;
-        modelEl.setAttribute('src', item.model);
+        nameEl.innerText = "Yükleniyor...";
+        
+        // Modeli yükle
+        modelEl.setAttribute('src', `./${item.file}`);
         modelEl.setAttribute('scale', `${item.sc} ${item.sc} ${item.sc}`);
+        
+        // Başarıyla yüklenince ismi yaz
+        modelEl.addEventListener('model-loaded', () => {
+            nameEl.innerText = item.name;
+        }, { once: true });
+
+        // Hata kontrolü
+        modelEl.addEventListener('model-error', (e) => {
+            nameEl.innerText = "Dosya Bulunamadı!";
+            console.error("Hata:", item.file);
+        }, { once: true });
       }
 
       function nextItem() {
-        currentIndex = (currentIndex + 1) % categories[currentCategory].length;
+        currentIdx = (currentIdx + 1) % categories[currentCat].length;
         updateModel();
       }
 
       function prevItem() {
-        currentIndex = (currentIndex - 1 + categories[currentCategory].length) % categories[currentCategory].length;
+        currentIdx = (currentIdx - 1 + categories[currentCat].length) % categories[currentCat].length;
         updateModel();
       }
 
       function changeCategory(cat) {
-        currentCategory = cat;
-        currentIndex = 0;
+        currentCat = cat;
+        currentIdx = 0;
         updateModel();
       }
-      
-      // İlk yükleme
-      window.onload = () => { updateModel(); };
+
+      window.onload = updateModel;
     </script>
   </body>
 </html>
