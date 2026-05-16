@@ -5,6 +5,10 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
       body { margin: 0; overflow: hidden; font-family: sans-serif; }
+      
+      /* VR ve AR Butonlarını KESİN olarak gizleyen CSS */
+      .a-enter-vr, .a-enter-ar, .a-orientation-modal { display: none !important; }
+      
       .main-buttons { position: fixed; top: 15px; width: 100%; text-align: center; z-index: 1000; }
       .nav-container { position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 15px; z-index: 1000; }
       .nav-btn { background: #ffcc00; color: black; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 28px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
@@ -36,7 +40,7 @@
       <a-light type="directional" position="1 3 1" intensity="1.5"></a-light>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model id="ar-model"></a-gltf-model>
+        <a-gltf-model id="ar-model" position="0 0 0"></a-gltf-model>
       </a-entity>
     </a-scene>
 
@@ -48,7 +52,7 @@
           { name: "Adana Kebap", file: "mustafa-_adana.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" },
           { name: "Çiğ Köfte", file: "mustafa_-_cig_kofte.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" },
           { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.70, rot: "110 0 0", pos: "0 0 0" },
-          { name: "Makarna", file: "makarna.glb", sc: 2, rot: "100 0 0", pos: "0 -0.1 0" }, // Açısı düzeltildi, hafif aşağı çekildi
+          { name: "Makarna", file: "makarna.glb", sc: 2, rot: "100 0 0", pos: "0 -0.1 0" },
           { name: "Patates Kızartması", file: "french_fries_tray.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" },
           { name: "Tost", file: "toasts_with_cheese.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" }
         ],
@@ -63,10 +67,10 @@
           { name: "Cappuccino", file: "cup_of_cappuccino.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" }
         ],
         tatli: [
-          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 3, rot: "100 0 0", pos: "0 -0.1 0" }, // Daha dik bakması sağlandı
+          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 3, rot: "110 0 0", pos: "0 -0.1 0" },
           { name: "Dondurma", file: "ice_cream.glb", sc: 0.08, rot: "0 0 0", pos: "0 0 0" },
           { name: "Kurabiye", file: "milk_and_cookies_for_santa.glb", sc: 2, rot: "0 0 0", pos: "0 0 0" },
-          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 2, rot: "110 0 0", pos: "0 -0.15 0" } // Yüksekliği azaltıldı (aşağı çekildi)
+          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 2, rot: "110 0 0", pos: "0 -0.15 0" }
         ]
       };
 
@@ -80,7 +84,6 @@
         
         nameEl.innerText = "Yükleniyor...";
         
-        // Önemli: Pozisyon, Scale ve Rotation değerlerini tek tek yükle
         modelEl.setAttribute('src', `./${item.file}`);
         modelEl.setAttribute('scale', `${item.sc} ${item.sc} ${item.sc}`);
         modelEl.setAttribute('position', item.pos);
@@ -90,7 +93,7 @@
         const startY = -30;
         const endY = 30;
         
-        // Salınım animasyonu
+        // Salınım animasyonu (Arkasını göstermeyen beşik hareketi)
         modelEl.setAttribute('animation', `property: rotation; from: ${baseRot[0]} ${startY} ${baseRot[2]}; to: ${baseRot[0]} ${endY} ${baseRot[2]}; dur: 3000; dir: alternate; easing: easeInOutQuad; loop: true`);
         
         modelEl.addEventListener('model-loaded', () => {
