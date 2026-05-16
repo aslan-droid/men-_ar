@@ -44,10 +44,10 @@
       const categories = {
         yemek: [
           { name: "Hamburger", file: "hamburger.glb", sc: 0.06, rot: "0 0 0" },
-          { name: "Pizza", file: "pizza.glb", sc: 0.75, rot: "90 0 0" },
+          { name: "Pizza", file: "pizza.glb", sc: 0.75, rot: "110 0 0" }, // Arkasını göstermemesi için açı verildi
           { name: "Adana Kebap", file: "mustafa-_adana.glb", sc: 0.22, rot: "0 0 0" },
           { name: "Çiğ Köfte", file: "mustafa_-_cig_kofte.glb", sc: 0.18, rot: "0 0 0" },
-          { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.22, rot: "90 0 0" },
+          { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.22, rot: "110 0 0" },
           { name: "Makarna", file: "makarna.glb", sc: 0.22, rot: "0 0 0" },
           { name: "Patates Kızartması", file: "french_fries_tray.glb", sc: 0.2, rot: "0 0 0" },
           { name: "Tost", file: "toasts_with_cheese.glb", sc: 0.2, rot: "0 0 0" }
@@ -63,10 +63,10 @@
           { name: "Cappuccino", file: "cup_of_cappuccino.glb", sc: 0.22, rot: "0 0 0" }
         ],
         tatli: [
-          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 1.0, rot: "90 0 0" },
+          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 1.0, rot: "110 0 0" },
           { name: "Dondurma", file: "ice_cream.glb", sc: 0.12, rot: "0 0 0" },
           { name: "Kurabiye", file: "milk_and_cookies_for_santa.glb", sc: 0.15, rot: "0 0 0" },
-          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 0.22, rot: "90 0 0" }
+          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 0.22, rot: "110 0 0" }
         ]
       };
 
@@ -84,17 +84,16 @@
         modelEl.setAttribute('scale', `${item.sc} ${item.sc} ${item.sc}`);
         modelEl.setAttribute('rotation', item.rot);
         
-        // Animasyon: Y-ekseninde 360 derece dönüş ekle
-        const targetRot = item.rot.split(' ');
-        const toValue = `${targetRot[0]} 360 ${targetRot[2]}`;
-        modelEl.setAttribute('animation', `property: rotation; to: ${toValue}; dur: 8000; easing: linear; loop: true; pauseEvents: model-error`);
+        // Animasyon Ayarı: 360 dönmek yerine, -30 ile +30 derece arası salınım yapacak
+        const baseRot = item.rot.split(' ');
+        const startY = -30;
+        const endY = 30;
+        
+        // "dir: alternate" özelliği modelin arkasını göstermeden sağa-sola git-gel yapmasını sağlar
+        modelEl.setAttribute('animation', `property: rotation; from: ${baseRot[0]} ${startY} ${baseRot[2]}; to: ${baseRot[0]} ${endY} ${baseRot[2]}; dur: 3000; dir: alternate; easing: easeInOutQuad; loop: true`);
         
         modelEl.addEventListener('model-loaded', () => {
             nameEl.innerText = item.name;
-        }, { once: true });
-
-        modelEl.addEventListener('model-error', () => {
-            nameEl.innerText = "Dosya Hatası!";
         }, { once: true });
       }
 
