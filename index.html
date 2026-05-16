@@ -4,12 +4,12 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
-      body { margin: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+      body { margin: 0; overflow: hidden; font-family: sans-serif; }
       .main-buttons { position: fixed; top: 15px; width: 100%; text-align: center; z-index: 1000; }
-      .nav-container { position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 20px; z-index: 1000; }
+      .nav-container { position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 15px; z-index: 1000; }
       .nav-btn { background: #ffcc00; color: black; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 28px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
-      .category-btn { background: rgba(0,0,0,0.85); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px 14px; border-radius: 12px; margin: 0 3px; cursor: pointer; font-size: 13px; font-weight: bold; }
-      #item-name { background: rgba(0,0,0,0.95); color: white; padding: 12px 25px; border-radius: 30px; font-size: 20px; border: 2px solid #ffcc00; min-width: 180px; text-align: center; font-weight: bold; }
+      .category-btn { background: rgba(0,0,0,0.85); color: #ffcc00; border: 2px solid #ffcc00; padding: 10px 12px; border-radius: 12px; margin: 0 3px; cursor: pointer; font-size: 12px; font-weight: bold; }
+      #item-name { background: rgba(0,0,0,0.95); color: white; padding: 12px 25px; border-radius: 30px; font-size: 19px; border: 2px solid #ffcc00; min-width: 170px; text-align: center; font-weight: bold; }
     </style>
   </head>
   <body>
@@ -29,46 +29,44 @@
              vr-mode-ui="enabled: false" 
              device-orientation-permission-ui="enabled: false" 
              color-space="sRGB" 
-             renderer="colorManagement: true, physicallyCorrectLights: true; antialias: true;">
+             renderer="colorManagement: true, physicallyCorrectLights: true">
       
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      
-      <a-light type="ambient" intensity="2.0"></a-light>
-      <a-light type="directional" position="1 4 2" intensity="1.8"></a-light>
-      <a-light type="point" position="-2 2 2" intensity="0.8"></a-light>
+      <a-light type="ambient" intensity="1.8"></a-light>
+      <a-light type="directional" position="1 3 1" intensity="1.5"></a-light>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model id="ar-model" position="0 0 0" rotation="0 0 0"></a-gltf-model>
+        <a-gltf-model id="ar-model" position="0 0 0"></a-gltf-model>
       </a-entity>
     </a-scene>
 
     <script>
       const categories = {
         yemek: [
-          { name: "Hamburger", file: "hamburger.glb", sc: 0.04 }, 
-          { name: "Pizza", file: "pizza.glb", sc: 1.75 }, // İyice büyütüldü
-          { name: "Adana Kebap", file: "mustafa-_adana.glb", sc: 1.75 },
-          { name: "Çiğ Köfte", file: "mustafa_-_cig_kofte.glb", sc: 1.75 },
-          { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.70 },
-          { name: "Makarna", file: "makarna.glb", sc: 1.75 },
-          { name: "Patates Kızartması", file: "french_fries_tray.glb", sc: 1.75},
-          { name: "Tost", file: "toasts_with_cheese.glb", sc: 1.75 }
+          { name: "Hamburger", file: "hamburger.glb", sc: 0.06, rot: "0 0 0" },
+          { name: "Pizza", file: "pizza.glb", sc: 0.75, rot: "90 0 0" },
+          { name: "Adana Kebap", file: "mustafa-_adana.glb", sc: 0.22, rot: "0 0 0" },
+          { name: "Çiğ Köfte", file: "mustafa_-_cig_kofte.glb", sc: 0.18, rot: "0 0 0" },
+          { name: "Pide", file: "pide_turkish_pizzakusbaskasar.glb", sc: 0.22, rot: "90 0 0" },
+          { name: "Makarna", file: "makarna.glb", sc: 0.22, rot: "0 0 0" },
+          { name: "Patates Kızartması", file: "french_fries_tray.glb", sc: 0.2, rot: "0 0 0" },
+          { name: "Tost", file: "toasts_with_cheese.glb", sc: 0.2, rot: "0 0 0" }
         ],
         icecek: [
-          { name: "Coca Cola", file: "coca_cola_bottle_glass.glb", sc: 1.75}, // Büyütüldü
-          { name: "Ayran", file: "ayran_turkish_drink_game_asset.glb", sc: 0.45 },
-          { name: "Su", file: "water_bottle.glb", sc: 0.1 },
-          { name: "Soda", file: "soda_can_kutu.glb", sc: 1.75},
-          { name: "Çay", file: "red_glass_of_tea.glb", sc: 1.75 },
-          { name: "Türk Kahvesi", file: "turkish_coffee.glb", sc: 1.50 },
-          { name: "Ice Coffee", file: "ice_coffee.glb", sc: 1.75 },
-          { name: "Cappuccino", file: "cup_of_cappuccino.glb", sc: 1.75 }
+          { name: "Coca Cola", file: "coca_cola_bottle_glass.glb", sc: 0.6, rot: "0 0 0" },
+          { name: "Ayran", file: "ayran_turkish_drink_game_asset.glb", sc: 0.45, rot: "0 0 0" },
+          { name: "Su", file: "water_bottle.glb", sc: 0.3, rot: "0 0 0" },
+          { name: "Soda", file: "soda_can_kutu.glb", sc: 0.3, rot: "0 0 0" },
+          { name: "Çay", file: "red_glass_of_tea.glb", sc: 0.22, rot: "0 0 0" },
+          { name: "Türk Kahvesi", file: "turkish_coffee.glb", sc: 0.12, rot: "0 0 0" },
+          { name: "Ice Coffee", file: "ice_coffee.glb", sc: 0.22, rot: "0 0 0" },
+          { name: "Cappuccino", file: "cup_of_cappuccino.glb", sc: 0.22, rot: "0 0 0" }
         ],
         tatli: [
-          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 2.75 }, 
-          { name: "Dondurma", file: "ice_cream.glb", sc: 0.08 }, // Küçük tutuldu
-          { name: "Kurabiye", file: "milk_and_cookies_for_santa.glb", sc: 1.75 },
-          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 1.75}
+          { name: "Baklava", file: "baklava_ince_tabak.glb", sc: 1.0, rot: "90 0 0" },
+          { name: "Dondurma", file: "ice_cream.glb", sc: 0.12, rot: "0 0 0" },
+          { name: "Kurabiye", file: "milk_and_cookies_for_santa.glb", sc: 0.15, rot: "0 0 0" },
+          { name: "Cheesecake", file: "dessert_for_breakfast.glb", sc: 0.22, rot: "90 0 0" }
         ]
       };
 
@@ -84,6 +82,12 @@
         
         modelEl.setAttribute('src', `./${item.file}`);
         modelEl.setAttribute('scale', `${item.sc} ${item.sc} ${item.sc}`);
+        modelEl.setAttribute('rotation', item.rot);
+        
+        // Animasyon: Y-ekseninde 360 derece dönüş ekle
+        const targetRot = item.rot.split(' ');
+        const toValue = `${targetRot[0]} 360 ${targetRot[2]}`;
+        modelEl.setAttribute('animation', `property: rotation; to: ${toValue}; dur: 8000; easing: linear; loop: true; pauseEvents: model-error`);
         
         modelEl.addEventListener('model-loaded', () => {
             nameEl.innerText = item.name;
